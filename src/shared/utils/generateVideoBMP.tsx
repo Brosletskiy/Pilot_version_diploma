@@ -1,7 +1,6 @@
 export type DrawingParams = {
-    inputType: 'bmp' | 'text' | null;
+    inputType: 'bmp' | null;
     bmpFile?: File | null;
-    textInput?: string | null;
     rows: number;
     cols: number;
     selectedBlocks?: string[];
@@ -16,7 +15,6 @@ export type DrawingParams = {
 export async function generateVideoBMP({
     inputType,
     bmpFile,
-    textInput,
     rows = 1,
     cols = 1,
     selectedBlocks = [],
@@ -53,32 +51,7 @@ export async function generateVideoBMP({
 
     await startRecording();
 
-    if (inputType === 'text') {
-        if (!textInput?.trim()) {
-            mediaRecorder.stop();
-            throw new Error("❌ Не введено текст для генерації.");
-        }
-
-        const chars = textInput.split('');
-        let x = 50, y = 50;
-        const lineHeight = 60;
-
-        for (let i = 0; i < chars.length; i++) {
-            const char = chars[i];
-            ctx.fillStyle = '#000';
-            ctx.fillText(char, x, y);
-            x += ctx.measureText(char).width;
-
-            if (x > canvas.width - 100) {
-                x = 50;
-                y += lineHeight;
-            }
-
-            onProgress?.(((i + 1) / chars.length) * 100);
-            await new Promise(r => setTimeout(r, videoSpeed));
-        }
-
-    } else if (inputType === 'bmp') {
+    if (inputType === 'bmp') {
         if (!bmpFile) {
             mediaRecorder.stop();
             throw new Error("❌ Не вибрано BMP файл для генерації.");
