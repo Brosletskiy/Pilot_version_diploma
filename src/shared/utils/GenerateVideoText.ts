@@ -55,7 +55,7 @@ export async function generateVideoText({
   recorder.start();
 
   for (let i = 0; i < charPositions.length; i++) {
-    const { char, x, y } = charPositions[i];
+    const { x, y } = charPositions[i];
 
     // Очистка фону
     ctx.fillStyle = '#ffffff';
