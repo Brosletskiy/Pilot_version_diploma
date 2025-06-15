@@ -27,7 +27,7 @@ export async function generateVideoText({
   ctx.font = font;
   ctx.fillStyle = '#000000';
 
-  const handImage = await svgToImage(hand1); // конвертація SVG у Image
+  const handImage = await svgToImage(hand1);
 
   const stream = canvas.captureStream(fps);
   const recorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
@@ -88,7 +88,6 @@ export async function generateVideoText({
     onProgress?.(i + 1, charPositions.length);
   }
 
-  // Додатковий кадр — щоб не обрізало останню літеру
   await new Promise((res) => setTimeout(res, 2000 / fps));
 
   recorder.stop();

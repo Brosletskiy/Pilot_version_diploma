@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import UploadPanel from "./UploadPanel";
 import DrawingSettings from "./DrawingSettings";
 import DrawingCanvas from "./DrawingCanvas";
-import GenerateButton from "./GenerateButton"; // 👈 додай
+import GenerateButton from "./GenerateButton";
 
 export default function DrawingApp() {
     const [mode, setMode] = useState<"image" | "text" | null>(null);
@@ -11,12 +11,16 @@ export default function DrawingApp() {
     const [rows, setRows] = useState(1);
     const [cols, setCols] = useState(1);
     const [fps, setFps] = useState(60);
-    const [videoUrl, setVideoUrl] = useState<string | null>(null); // 👈
+    const [videoUrl, setVideoUrl] = useState<string | null>(null);
+
+    const [direction, setDirection] = useState<
+        "left-to-right" | "right-to-left" | "top-to-bottom" | "bottom-to-top"
+    >("left-to-right");
 
     return (
         <div className="drawing-app">
             <header>
-                <h1>Інтелектуальне малювання навчального контенту</h1>
+                <h1 className="app-logo">MakeItLive</h1>
             </header>
 
             <main>
@@ -30,14 +34,17 @@ export default function DrawingApp() {
                 />
 
                 <DrawingSettings
-                    rows={rows}
-                    cols={cols}
                     fps={fps}
-                    setRows={setRows}
-                    setCols={setCols}
                     setFps={setFps}
+                    rows={rows}
+                    setRows={setRows}
+                    cols={cols}
+                    setCols={setCols}
+                    direction={direction}
+                    setDirection={setDirection}
                 />
 
+                <h2 className="preview-title">Попередній перегляд</h2>
                 <DrawingCanvas
                     mode={mode}
                     image={image}

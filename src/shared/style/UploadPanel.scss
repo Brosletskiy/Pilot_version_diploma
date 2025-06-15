@@ -1,83 +1,65 @@
 .upload-panel {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   gap: 1rem;
-  padding: 1.5rem;
-  background-color: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
+  margin-bottom: 2rem;
+  align-items: stretch;
 
-.upload-panel h2 {
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
-  color: #333;
-}
+  .upload-section,
+  .text-section {
+    flex: 1;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    padding: 1rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 
-.upload-options {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
+  .upload-label,
+  .text-label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
 
-.upload-options input[type="file"] {
-  display: none;
-}
+  .upload-filename {
+    margin-top: 0.5rem;
+    color: green;
+    font-weight: bold;
+  }
 
-.upload-options .custom-file-label {
-  padding: 0.5rem 1rem;
-  background-color: #e0e0e0;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  font-weight: 500;
-}
+  textarea {
+    resize: none;
+    height: 100px;
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
 
-.upload-options .custom-file-label:hover {
-  background-color: #ccc;
-}
+  button {
+    align-self: flex-end;
+    background-color: #ff6961;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
 
-.upload-options input[type="text"] {
-  flex: 1;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 1rem;
-}
+    &:hover {
+      background-color: #e5524d;
+    }
+  }
 
-.upload-options button {
-  padding: 0.5rem 1rem;
-  background-color: #f44336;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.upload-options button:hover {
-  background-color: #d32f2f;
-}
-
-.preview-area {
-  text-align: center;
-  margin-top: 1rem;
-}
-
-.preview-area img {
-  max-width: 100%;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  margin-top: 0.5rem;
-}
-
-.preview-area .text-preview {
-  font-size: 1rem;
-  color: #555;
-  padding: 1rem;
-  background-color: #f9f9f9;
-  border-radius: 6px;
-  border: 1px dashed #aaa;
-  margin-top: 0.5rem;
+  .or-label {
+    align-self: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+  }
 }

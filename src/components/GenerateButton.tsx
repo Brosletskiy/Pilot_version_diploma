@@ -43,9 +43,6 @@ const GenerateButton: React.FC<GenerateButtonProps> = ({
                     fps,
                     canvasWidth: 800,
                     canvasHeight: 600,
-                    onProgress: (frame, total) => {
-                        // Можна оновлювати прогресбар тут
-                    }
                 });
                 onGenerated(result.videoUrl);
             } else if (inputType === 'bmp') {

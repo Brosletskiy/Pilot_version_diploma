@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import '../shared/style/UploadPanel.scss';
 
 interface UploadPanelProps {
@@ -11,13 +11,14 @@ interface UploadPanelProps {
 }
 
 const UploadPanel: React.FC<UploadPanelProps> = ({
-    mode,
     setMode,
     image,
     setImage,
     text,
     setText,
 }) => {
+    const fileInputRef = useRef<HTMLInputElement>(null);
+
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
@@ -35,9 +36,19 @@ const UploadPanel: React.FC<UploadPanelProps> = ({
         <div className="upload-panel">
             <div className="upload-section">
                 <label className="upload-label">Завантажити BMP файл</label>
-                <input type="file" accept=".bmp" onChange={handleImageChange} />
+                <input ref={fileInputRef} type="file" accept=".bmp" onChange={handleImageChange} />
                 {image && <p className="upload-filename">✅ {image.name}</p>}
+
+                <button onClick={() => {
+                    setImage(null); setMode(null); if (fileInputRef.current) {
+                        fileInputRef.current.value = '';
+                    }
+                }}>
+                    Видалити
+                </button>
             </div>
+
+            <div className="or-label">Або</div>
 
             <div className="text-section">
                 <label className="text-label">Ввести текст</label>
@@ -47,6 +58,10 @@ const UploadPanel: React.FC<UploadPanelProps> = ({
                     rows={4}
                     placeholder="Введіть ваш текст..."
                 />
+
+                <button onClick={() => { setText(''); setMode(null); }}>
+                    Видалити
+                </button>
             </div>
         </div>
     );

@@ -23,12 +23,12 @@ const DrawingCanvas: React.FC<DrawingCanvasProps> = ({
 
     useEffect(() => {
         const canvas = canvasRef.current;
-        if (!canvas || !mode) return;
+        if (!canvas) return;
 
         const ctx = canvas.getContext('2d');
         if (!ctx) return;
-
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        if (!mode) return;
         ctx.fillStyle = "#fff";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -37,7 +37,6 @@ const DrawingCanvas: React.FC<DrawingCanvasProps> = ({
             ctx.font = '24px Arial';
             const lineHeight = 32;
             const margin = 20;
-            const maxWidth = canvas.width - margin * 2;
 
             let x = margin;
             let y = margin + lineHeight;
