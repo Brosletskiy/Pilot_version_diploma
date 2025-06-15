@@ -10,6 +10,8 @@ interface GenerateButtonProps {
     cols: number;
     fps: number;
     onGenerated: (videoUrl: string) => void;
+    direction?: 'top-bottom' | 'bottom-top' | 'left-right' | 'right-left';
+    selectedBlocks: string[];
 }
 
 const GenerateButton: React.FC<GenerateButtonProps> = ({
@@ -20,6 +22,8 @@ const GenerateButton: React.FC<GenerateButtonProps> = ({
     cols,
     fps,
     onGenerated,
+    direction,
+    selectedBlocks,
 }) => {
     const [loading, setLoading] = useState(false);
 
@@ -49,10 +53,11 @@ const GenerateButton: React.FC<GenerateButtonProps> = ({
                 const result = await generateVideoBMP({
                     inputType,
                     bmpFile: image,
-                    textInput: '',
                     rows,
                     cols,
                     fps,
+                    selectedBlocks,
+                    selectedDirection: direction,
                 });
                 onGenerated(result.videoUrl);
             }

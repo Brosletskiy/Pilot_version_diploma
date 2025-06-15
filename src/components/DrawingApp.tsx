@@ -12,10 +12,11 @@ export default function DrawingApp() {
     const [cols, setCols] = useState(1);
     const [fps, setFps] = useState(60);
     const [videoUrl, setVideoUrl] = useState<string | null>(null);
+    const [selectedBlocks, setSelectedBlocks] = useState<string[]>([]);
 
     const [direction, setDirection] = useState<
-        "left-to-right" | "right-to-left" | "top-to-bottom" | "bottom-to-top"
-    >("left-to-right");
+        "top-bottom" | "bottom-top" | "left-right" | "right-left"
+    >("left-right");
 
     return (
         <div className="drawing-app">
@@ -52,6 +53,7 @@ export default function DrawingApp() {
                     rows={rows}
                     cols={cols}
                     fps={fps}
+                    onSelectedBlocksChange={setSelectedBlocks}
                 />
 
                 <GenerateButton
@@ -62,6 +64,8 @@ export default function DrawingApp() {
                     cols={cols}
                     fps={fps}
                     onGenerated={(url) => setVideoUrl(url)}
+                    selectedBlocks={selectedBlocks}
+                    direction={direction}
                 />
 
                 {videoUrl && (

@@ -8,6 +8,7 @@ interface DrawingCanvasProps {
     rows: number;
     cols: number;
     fps: number;
+    onSelectedBlocksChange?: (blocks: string[]) => void;
 }
 
 const DrawingCanvas: React.FC<DrawingCanvasProps> = ({
@@ -17,9 +18,14 @@ const DrawingCanvas: React.FC<DrawingCanvasProps> = ({
     rows,
     cols,
     fps,
+    onSelectedBlocksChange,
 }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [selectedBlocks, setSelectedBlocks] = useState<string[]>([]);
+
+    useEffect(() => {
+        onSelectedBlocksChange?.(selectedBlocks);
+    }, [selectedBlocks]);
 
     useEffect(() => {
         const canvas = canvasRef.current;

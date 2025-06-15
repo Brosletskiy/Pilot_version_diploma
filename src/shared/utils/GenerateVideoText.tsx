@@ -54,37 +54,41 @@ export async function generateVideoText({
 
   recorder.start();
 
+  let paintedChars = 0;
+
   for (let i = 0; i < charPositions.length; i++) {
     const { x, y } = charPositions[i];
 
-    // Очистка фону
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
     ctx.save();
     ctx.translate(0, -scrollOffset);
 
-    // Малювання всього попереднього тексту
     ctx.fillStyle = '#000000';
     for (let j = 0; j <= i; j++) {
       const { char, x, y } = charPositions[j];
       ctx.fillText(char, x, y);
     }
 
-    // Додавання зображення руки
     const handX = x;
     const handY = y - 45;
     ctx.drawImage(handImage, handX, handY, 64, 64);
 
     ctx.restore();
 
-    // Автоскрол вниз
     if (y - scrollOffset > canvasHeight - lineHeight * 2) {
       scrollOffset += lineHeight;
     }
 
-    // Очікування кадру
-    await new Promise((res) => setTimeout(res, 1000 / fps));
+    await new Promise(res => setTimeout(res, 1500 / fps));
+    paintedChars++;
+
+    if (charPositions[i].char === '.' && paintedChars >= 4) {
+      await new Promise(res => setTimeout(res, 5000));
+      paintedChars = 0;
+    }
+
     onProgress?.(i + 1, charPositions.length);
   }
 

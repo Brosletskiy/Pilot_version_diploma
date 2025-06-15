@@ -8,11 +8,10 @@ interface DrawingSettingsProps {
     setRows: (rows: number) => void;
     cols: number;
     setCols: (cols: number) => void;
-    direction: 'left-to-right' | 'right-to-left' | 'top-to-bottom' | 'bottom-to-top';
-    setDirection: (dir: 'left-to-right' | 'right-to-left' | 'top-to-bottom' | 'bottom-to-top') => void;
+    direction?: 'top-bottom' | 'bottom-top' | 'left-right' | 'right-left';
+    setDirection: (dir: 'top-bottom' | 'bottom-top' | 'left-right' | 'right-left') => void;
     onGridChangeEffect?: (rows: number, cols: number) => void;
 }
-
 
 const DrawingSettings: React.FC<DrawingSettingsProps> = ({
     fps,
@@ -47,8 +46,8 @@ const DrawingSettings: React.FC<DrawingSettingsProps> = ({
                         <input
                             type="radio"
                             name="direction"
-                            checked={direction === 'left-to-right'}
-                            onChange={() => setDirection('left-to-right')}
+                            checked={direction === 'left-right'}
+                            onChange={() => setDirection('left-right')}
                         />
                         → Зліва направо
                     </label>
@@ -56,8 +55,8 @@ const DrawingSettings: React.FC<DrawingSettingsProps> = ({
                         <input
                             type="radio"
                             name="direction"
-                            checked={direction === 'right-to-left'}
-                            onChange={() => setDirection('right-to-left')}
+                            checked={direction === 'right-left'}
+                            onChange={() => setDirection('right-left')}
                         />
                         ← Справа наліво
                     </label>
@@ -65,8 +64,8 @@ const DrawingSettings: React.FC<DrawingSettingsProps> = ({
                         <input
                             type="radio"
                             name="direction"
-                            checked={direction === 'top-to-bottom'}
-                            onChange={() => setDirection('top-to-bottom')}
+                            checked={direction === 'top-bottom'}
+                            onChange={() => setDirection('top-bottom')}
                         />
                         ↓ Зверху вниз
                     </label>
@@ -74,8 +73,8 @@ const DrawingSettings: React.FC<DrawingSettingsProps> = ({
                         <input
                             type="radio"
                             name="direction"
-                            checked={direction === 'bottom-to-top'}
-                            onChange={() => setDirection('bottom-to-top')}
+                            checked={direction === 'bottom-top'}
+                            onChange={() => setDirection('bottom-top')}
                         />
                         ↑ Знизу вверх
                     </label>

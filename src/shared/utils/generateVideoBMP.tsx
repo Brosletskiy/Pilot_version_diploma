@@ -22,7 +22,7 @@ export async function generateVideoBMP({
     onProgress,
     hieghtVideo = 1280,
     weightVideo = 720,
-    colorVideoBack = "#fff",
+    colorVideoBack = "#000",
     fps = 120
 }: DrawingParams): Promise<{ videoUrl: string }> {
     if (!inputType) throw new Error("❌ Не вказано тип введення.");
