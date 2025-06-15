@@ -1,0 +1,83 @@
+.upload-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.upload-panel h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.upload-options {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.upload-options input[type="file"] {
+  display: none;
+}
+
+.upload-options .custom-file-label {
+  padding: 0.5rem 1rem;
+  background-color: #e0e0e0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-weight: 500;
+}
+
+.upload-options .custom-file-label:hover {
+  background-color: #ccc;
+}
+
+.upload-options input[type="text"] {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.upload-options button {
+  padding: 0.5rem 1rem;
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.upload-options button:hover {
+  background-color: #d32f2f;
+}
+
+.preview-area {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.preview-area img {
+  max-width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-top: 0.5rem;
+}
+
+.preview-area .text-preview {
+  font-size: 1rem;
+  color: #555;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 6px;
+  border: 1px dashed #aaa;
+  margin-top: 0.5rem;
+}

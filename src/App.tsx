@@ -1,19 +1,13 @@
-import './index.scss'
-import { Route, Routes } from 'react-router-dom'
-import NotFound from './features/notFound'
-import Home from './features/index';
-import "./App.scss";
-
+import React from "react";
+import DrawingApp from "./components/DrawingApp";
+import "./index.scss";
 
 function App() {
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/*" element={<NotFound />} />
-      </Routes>
-    </>
-  )
+    <div className="app-wrapper">
+      <DrawingApp />
+    </div>
+  );
 }
 
-export default App
+export default App;
